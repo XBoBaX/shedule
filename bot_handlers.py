@@ -17,20 +17,17 @@ def send_updates(message):
 
 
 @bot.message_handler(content_types=["text"])  # Любой текст
-
-weekday_today = datetime.now().weekday()
-try:
-    if r.get('weekday') != weekday_today:
-        r.set('weekday', weekday_today)
-        print("Дни недели совпадают")
-    else:
-        print("Дни недели не совпадают")
-except Exception:
-    r.set('weekday', weekday_today)
-    print("Установили день недели")
-
-
 def repeat_all_messages(message):
+    weekday_today = datetime.now().weekday()
+    try:
+        if r.get('weekday') != weekday_today:
+            r.set('weekday', weekday_today)
+            print("Дни недели совпадают")
+        else:
+            print("Дни недели не совпадают")
+    except Exception:
+        r.set('weekday', weekday_today)
+        print("Установили день недели")
     bot.send_message(message.chat.id, message.text)
 
 
