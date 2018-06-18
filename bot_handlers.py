@@ -26,7 +26,7 @@ def repeat_all_messages(message):
 
 
 def check_new_day():
-    weekday_today = int((datetime.now() + timedelta(hours=3)).weekday() - 1)
+    weekday_today = int((datetime.now() + timedelta(hours=3)).weekday())
     try:
         if int(r.get('weekday')) != weekday_today:
             print("Дни недели не совпадают")
