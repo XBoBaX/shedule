@@ -26,15 +26,14 @@ def repeat_all_messages(message):
 
 
 def check_new_day():
-    weekday_today = int((datetime.now() + timedelta(hours=3)).weekday())
-    print(weekday_today)
+    weekday_today = int((datetime.now() + timedelta(hours=3)).weekday() - 1)
     try:
         if int(r.get('weekday')) != weekday_today:
             print("Дни недели не совпадают")
             r.set('weekday', weekday_today)
-            with urllib.request.urlopen(STUDENT_SHEDULE) as url:
+            with urllib.request.urlopen(STUDENT_SHEDULE):
                 print("Расписание студентов обновленно")
-            with urllib.request.urlopen(TEACHER_SCHEDULE) as url:
+            with urllib.request.urlopen(TEACHER_SCHEDULE):
                 print("Расписание преподователей обновленно")
     except Exception:
         r.set('weekday', weekday_today)
