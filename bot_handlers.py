@@ -20,11 +20,10 @@ def send_updates(message):
 def repeat_all_messages(message):
     weekday_today = int(datetime.now().weekday())
     print(weekday_today)
-    print(r)
     print("r = {0}".format(r.get('weekday')))
-    print(r.get('weekday') != weekday_today)
+    print(int(r.get('weekday')) != weekday_today)
     try:
-        if r.get('weekday') != weekday_today:
+        if int(r.get('weekday')) != weekday_today:
             r.set('weekday', weekday_today)
             print("Дни недели не совпадают")
         else:
