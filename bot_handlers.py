@@ -20,6 +20,7 @@ def send_updates(message):
 def repeat_all_messages(message):
     weekday_today = datetime.now().weekday()
     print(weekday_today)
+    print(r)
     print(r.get('weekday'))
     try:
         if r.get('weekday') != weekday_today:
