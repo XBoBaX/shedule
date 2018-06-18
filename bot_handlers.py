@@ -1,4 +1,4 @@
-from bot import bot  # Импортируем объект бота
+from bot import bot, r  # Импортируем объект бота
 from messages import *  # Инмпортируем все с файла сообщений
 
 
@@ -7,12 +7,16 @@ from messages import *  # Инмпортируем все с файла сооб
 def send_welcome(message):
     bot.send_message(message.chat.id, HELLO_MESSAGE)
 
+@bot.message_handler(commands=['updates'])
+# Выполняется, когда пользователь нажимает на updates
+def send_updates(message):
+    bot.send_message(message.chat.id, UPDATES_MESSAGE)
+
+
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
     bot.send_message(message.chat.id, message.text)
-
-
 
 
 if __name__ == '__main__':
