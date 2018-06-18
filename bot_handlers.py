@@ -22,13 +22,13 @@ def send_updates(message):
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
     check_new_day()
-    print(datetime.now())
-    print(datetime.now() + timedelta(hours=3))
     bot.send_message(message.chat.id, message.text)
 
 
 def check_new_day():
-    weekday_today = int(datetime.now().weekday())
+    weekday_today = datetime.now().weekday() + timedelta(hours=3)
+    weekday_today = int(weekday_today)
+    print(weekday_today)
     try:
         if int(r.get('weekday')) != weekday_today:
             print("Дни недели не совпадают")
