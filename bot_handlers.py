@@ -21,15 +21,15 @@ def repeat_all_messages(message):
     weekday_today = datetime.now().weekday()
     print(weekday_today)
     print(r)
-    print(r.get('weekday'))
+    print("r = {0}".format(r.get('weekday')))
     try:
         if r.get('weekday') != weekday_today:
-            r.set({'weekday': weekday_today})
+            r.set('weekday', weekday_today)
             print("Дни недели не совпадают")
         else:
             print("Дни недели совпадают")
     except Exception:
-        r.set({'weekday': weekday_today})
+        r.set('weekday', weekday_today)
         print("Установили день недели")
     bot.send_message(message.chat.id, message.text)
 
