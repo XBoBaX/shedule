@@ -28,7 +28,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url="https://git.heroku.com/shedule0server.git/{0}".format(token))
+    bot.set_webhook(url="https://shedule0server.herokuapp.com/{0}".format(token))
     return "!", 200
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
