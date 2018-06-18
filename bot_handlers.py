@@ -1,18 +1,19 @@
 from bot import bot  # Импортируем объект бота
 from messages import *  # Инмпортируем все с файла сообщений
-
+from log import *
 
 @bot.message_handler(commands=['start'])
 # Выполняется, когда пользователь нажимает на start
 def send_welcome(message):
     bot.send_message(message.chat.id, HELLO_MESSAGE)
+    log(message, HELLO_MESSAGE)
 
 
 @bot.message_handler(commands=['updates'])
 # Выполняется, когда пользователь нажимает на updates
 def send_updates(message):
     bot.send_message(message.chat.id, UPDATES_MESSAGE)
-
+    log(message, UPDATES_MESSAGE)
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
