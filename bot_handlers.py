@@ -18,10 +18,11 @@ def send_updates(message):
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
-    weekday_today = datetime.now().weekday()
+    weekday_today = int(datetime.now().weekday())
     print(weekday_today)
     print(r)
     print("r = {0}".format(r.get('weekday')))
+    print(r.get('weekday') != weekday_today)
     try:
         if r.get('weekday') != weekday_today:
             r.set('weekday', weekday_today)
