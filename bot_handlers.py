@@ -1,6 +1,9 @@
+import urllib.request
+
 from bot import bot, r  # Импортируем объект бота
 from log import *
 from messages import *  # Инмпортируем все с файла сообщений
+from urls import *  # Инмпортируем все с файла ссылок
 
 
 @bot.message_handler(commands=['start'])
@@ -18,20 +21,24 @@ def send_updates(message):
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
+    check_new_day()
+    print(datetime.now())
+    print(datetime.now() + timedelta(hours=3))
+    bot.send_message(message.chat.id, message.text)
+
+
+def check_new_day():
     weekday_today = int(datetime.now().weekday())
-    print(weekday_today)
-    print("r = {0}".format(r.get('weekday')))
-    print(int(r.get('weekday')) != weekday_today)
     try:
         if int(r.get('weekday')) != weekday_today:
-            r.set('weekday', weekday_today)
             print("Дни недели не совпадают")
-        else:
-            print("Дни недели совпадают")
+            r.set('weekday', weekday_today)
+            with urllib.request.urlopen(STUDENT_SHEDULE) as url:
+                print("Расписание студентов обновленно")
+            with urllib.request.urlopen(TEACHER_SCHEDULE) as url:
+                print("Расписание преподователей обновленно")
     except Exception:
         r.set('weekday', weekday_today)
-        print("Установили день недели")
-    bot.send_message(message.chat.id, message.text)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,2 @@
+TEACHER_SCHEDULE = "https://artncoprojects.000webhostapp.com/Raspisanie/api/501e67390f3a7989fee3dd1d9c605d82fe9d1b2e8bf7e0b27389f20b717c7e37/teacherSchedule/all"
+STUDENT_SHEDULE = "https://artncoprojects.000webhostapp.com/Raspisanie/api/501e67390f3a7989fee3dd1d9c605d82fe9d1b2e8bf7e0b27389f20b717c7e37/schedule/all"
