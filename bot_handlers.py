@@ -1,8 +1,7 @@
-from bot import bot  # Импортируем объект бота
+from bot import bot, r  # Импортируем объект бота
 from log import *
 from messages import *  # Инмпортируем все с файла сообщений
 
-print("1")
 
 @bot.message_handler(commands=['start'])
 # Выполняется, когда пользователь нажимает на start
@@ -18,6 +17,19 @@ def send_updates(message):
 
 
 @bot.message_handler(content_types=["text"])  # Любой текст
+
+weekday_today = datetime.now().weekday()
+try:
+    if r.get('weekday') != weekday_today:
+        r.set('weekday', weekday_today)
+        print("Дни недели совпадают")
+    else:
+        print("Дни недели не совпадают")
+except Exception:
+    r.set('weekday', weekday_today)
+    print("Установили день недели")
+
+
 def repeat_all_messages(message):
     bot.send_message(message.chat.id, message.text)
 
