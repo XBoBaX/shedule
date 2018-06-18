@@ -1,1 +1,1 @@
-kek: python view.py
+web: python view.py
