@@ -1,6 +1,7 @@
 from log import *
 from messages import *  # Импортируем все с файла сообщений
 from update import *  #
+import telebot
 
 @bot.message_handler(commands=['start'])
 # Выполняется, когда пользователь нажимает на start
@@ -24,7 +25,7 @@ def repeat_all_messages(message):
 
 def keyboard_start(from_user):
     check_new_day("группы")
-    keyboard = bot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.row('1 курс', '2 курс', '3 курс')
     keyboard.row('4 курс', '5 курс', '6 курс')
     keyboard.row('7 курс', 'Преподаватели')
@@ -33,7 +34,7 @@ def keyboard_start(from_user):
 
 
 def select_group(message):
-    user_markup = bot.types.ReplyKeyboardMarkup(True, False)
+    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
     group_list = r.get("STUDENT_LIST")
     if message.text == "1 курс":
         for ch in group_list:

@@ -5,7 +5,6 @@ from urls import *  # Инмпортируем все с файла ссылок
 from datetime import datetime, timedelta
 from bot import bot, r
 
-
 def check_new_day(check):
     weekday_today = int((datetime.now() + timedelta(hours=3)).weekday())
     try:
