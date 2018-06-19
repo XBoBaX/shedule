@@ -10,20 +10,17 @@ def keyboard_start(message):
     keyboard.row('1 курс', '2 курс', '3 курс')
     keyboard.row('4 курс', '5 курс', '6 курс')
     keyboard.row('7 курс', 'Преподаватели')
-    print(message.from_user.id)
-    
+
     msg = bot.send_message(message.from_user.id, "Выберите нужный курс", reply_markup=keyboard)
     bot.register_next_step_handler(msg, select_group)
 
 
 def select_group(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    print("111111111")
-    print(message.text)
     group_list = json.loads(r.get("STUDENT_LIST"))
-    print(group_list)
     if message.text == "1 курс":
         for ch in group_list:
+            ch = ch[ch.find('.'):]
             print(ch)
 
 
