@@ -35,7 +35,9 @@ def keyboard_start(id):
 
 def select_group(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
+    print(message.text)
     group_list = json.loads(r.get("STUDENT_LIST"))
+    print(group_list)
     if message.text == "1 курс":
         for ch in group_list:
             print(ch)
