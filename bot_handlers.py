@@ -7,7 +7,7 @@ import telebot
 # Выполняется, когда пользователь нажимает на start
 def send_welcome(message):
     bot.send_message(message.chat.id, HELLO_MESSAGE)
-    keyboard_start(message.chat.id)
+    keyboard_start(message)
     # log(message, HELLO_MESSAGE)
 
 
@@ -23,7 +23,7 @@ def repeat_all_messages(message):
     bot.send_message(message.chat.id, message.text)
 
 
-def keyboard_start(id):
+def keyboard_start(message):
     check_new_day("группы")
     keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.row('1 курс', '2 курс', '3 курс')
@@ -32,9 +32,9 @@ def keyboard_start(id):
 
     # msg = bot.send_message(message.from_user.id, "Выберите нужный курс", reply_markup=keyboard)
     # bot.register_next_step_handler(msg, checkGroup)
-    print(id)
+    print(message.from_user.id)
 
-    keyboard_msg = bot.send_message(id, "Выберите нужный курс", reply_markup=keyboard)
+    keyboard_msg = bot.send_message(message.from_user.id, "Выберите нужный курс", reply_markup=keyboard)
     bot.register_next_step_handler(keyboard_msg, select_group)
 
 
