@@ -20,7 +20,7 @@ def select_group(message):
     group_list = json.loads(r.get("STUDENT_LIST"))
     if message.text == "1 курс":
         for ch in group_list:
-            ch = ch[ch.find('.'):]
+            ch = ch[:ch.find('.')]
             print(ch)
 
 
