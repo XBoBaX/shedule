@@ -1,16 +1,13 @@
-import urllib.request
-
-from bot import bot, r  # Импортируем объект бота
 from log import *
-from messages import *  # Инмпортируем все с файла сообщений
-from urls import *  # Инмпортируем все с файла ссылок
-
+from messages import *  # Импортируем все с файла сообщений
+from update import *  #
 
 @bot.message_handler(commands=['start'])
 # Выполняется, когда пользователь нажимает на start
 def send_welcome(message):
     bot.send_message(message.chat.id, HELLO_MESSAGE)
-    log(message, HELLO_MESSAGE)
+    keyboard_start(message.chat.id)
+    # log(message, HELLO_MESSAGE)
 
 
 @bot.message_handler(commands=['updates'])
@@ -21,22 +18,26 @@ def send_updates(message):
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
-    check_new_day()
+    check_new_day("расписание")
     bot.send_message(message.chat.id, message.text)
 
 
-def check_new_day():
-    weekday_today = int((datetime.now() + timedelta(hours=3)).weekday())
-    try:
-        if int(r.get('weekday')) != weekday_today:
-            print("Дни недели не совпадают")
-            r.set('weekday', weekday_today)
-            with urllib.request.urlopen(STUDENT_SHEDULE):
-                print("Расписание студентов обновленно")
-            with urllib.request.urlopen(TEACHER_SCHEDULE):
-                print("Расписание преподователей обновленно")
-    except Exception:
-        r.set('weekday', weekday_today)
+def keyboard_start(from_user):
+    check_new_day("группы")
+    keyboard = bot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.row('1 курс', '2 курс', '3 курс')
+    keyboard.row('4 курс', '5 курс', '6 курс')
+    keyboard.row('7 курс', 'Преподаватели')
+    keyboard_msg = bot.send_message(from_user.id, "Выберите нужный курс", reply_markup=keyboard)
+    bot.register_next_step_handler(keyboard_msg, select_group)
+
+
+def select_group(message):
+    user_markup = bot.types.ReplyKeyboardMarkup(True, False)
+    group_list = r.get("STUDENT_LIST")
+    if message.text == "1 курс":
+        for ch in group_list:
+            print(ch)
 
 
 if __name__ == '__main__':
