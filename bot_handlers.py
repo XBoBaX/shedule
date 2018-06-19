@@ -10,12 +10,8 @@ def keyboard_start(message):
     keyboard.row('1 курс', '2 курс', '3 курс')
     keyboard.row('4 курс', '5 курс', '6 курс')
     keyboard.row('7 курс', 'Преподаватели')
-
-    # msg = bot.send_message(message.from_user.id, "Выберите нужный курс", reply_markup=keyboard)
-    # bot.register_next_step_handler(msg, checkGroup)
-
     print(message.from_user.id)
-
+    
     msg = bot.send_message(message.from_user.id, "Выберите нужный курс", reply_markup=keyboard)
     bot.register_next_step_handler(msg, select_group)
 
