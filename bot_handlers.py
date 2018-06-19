@@ -23,13 +23,13 @@ def repeat_all_messages(message):
     bot.send_message(message.chat.id, message.text)
 
 
-def keyboard_start(from_user):
+def keyboard_start(id):
     check_new_day("группы")
     keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.row('1 курс', '2 курс', '3 курс')
     keyboard.row('4 курс', '5 курс', '6 курс')
     keyboard.row('7 курс', 'Преподаватели')
-    keyboard_msg = bot.send_message(from_user.id, "Выберите нужный курс", reply_markup=keyboard)
+    keyboard_msg = bot.send_message(id, "Выберите нужный курс", reply_markup=keyboard)
     bot.register_next_step_handler(keyboard_msg, select_group)
 
 
