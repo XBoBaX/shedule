@@ -19,7 +19,7 @@ def send_updates(message):
 
 @bot.message_handler(content_types=["text"])  # Любой текст
 def repeat_all_messages(message):
-    check_new_day("расписание")
+    # check_new_day("расписание")
     bot.send_message(message.chat.id, message.text)
 
 
