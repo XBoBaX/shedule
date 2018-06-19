@@ -13,15 +13,16 @@ def check_new_day(check):
         with urllib.request.urlopen(STUDENT_LIST) as url:
             r.set("STUDENT_LIST", url.read().decode())
             print("Группы обновлены")
-            print(r.get("STUDENT_LIST"))
         with urllib.request.urlopen(TEACHER_LIST) as url:
             r.set("TEACHER_LIST", url.read().decode())
             print("Преподователи обновлены")
-            print(r.get("TEACHER_LIST"))
         with urllib.request.urlopen(TEACHER_LIST_UKR) as url:
             r.set("TEACHER_LIST_UKR", url.read().decode())
             print("Преподаватели (укр) обновлены")
-            print(r.get("TEACHER_LIST_UKR"))
+
+        print(r.get("STUDENT_LIST"))
+        print(r.get("TEACHER_LIST"))
+        print(r.get("TEACHER_LIST_UKR"))
 
     # try:
     #     if int(r.get('weekday')) != weekday_today:
