@@ -20,6 +20,7 @@ def select_group(message):
     group_list = json.loads(r.get("STUDENT_LIST"))
     kours_select = message.text[:1]
     mas = {}
+    print("1")
     for ch in group_list:
         if ch.find('.') == -1:
             kyrs = ch
@@ -30,8 +31,11 @@ def select_group(message):
         if kyrs_year in mas:
             mas["{0}".format(kyrs_year)].append("{0}".format(ch))
         else:
-            mas["{0}".format(kyrs_year)] = [ch]
+            mas["{0}".format(kyrs_year)] = ["{0}".format(ch)]
+    print("2")
     print(mas)
+    print("3")
+
 
 
 
