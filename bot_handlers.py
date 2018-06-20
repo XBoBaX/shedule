@@ -18,10 +18,22 @@ def keyboard_start(message):
 def select_group(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
     group_list = json.loads(r.get("STUDENT_LIST"))
-    if message.text == "1 курс":
-        for ch in group_list:
-            ch = ch[:ch.find('.')]
-            print(ch)
+    kours_select = message.text[:1]
+    mas = []
+    for ch in group_list:
+        if ch.find('.') == -1:
+            kyrs = ch
+        else:
+            kyrs = ch[:ch.find('.')]
+
+        kyrs_year = kyrs[kyrs.__len__() - 2:]
+        if kyrs_year in mas:
+            mas["{0}".format(kyrs_year)].append("{0}".format(ch))
+        else:
+            mas.append(kyrs_year)
+        print(kyrs)
+
+
 
 
 @bot.message_handler(commands=['start'])
