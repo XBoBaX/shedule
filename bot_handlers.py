@@ -28,9 +28,9 @@ def select_group(message):
 
         kyrs_year = kyrs[kyrs.__len__() - 2:]
         if kyrs_year in mas:
-            mas["{0}".format(kyrs_year)][0].append("{0}".format(ch))
+            mas["{0}".format(kyrs_year)].append("{0}".format(ch))
         else:
-            mas["{0}".format(kyrs_year)]
+            mas["{0}".format(kyrs_year)] = [ch]
     print(mas)
 
 
